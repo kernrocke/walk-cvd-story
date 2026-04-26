@@ -38,10 +38,6 @@ jobs:
               ("app.R",                  "app.R"),
               ("packages.R",             "packages.R"),
               ("README.md",              "README.md"),
-              ("www/prisma_scr.jpg",     "www/prisma_scr.jpg"),
-              ("www/evidence_matrix.jpg","www/evidence_matrix.jpg"),
-              ("www/equip_plot.jpg",     "www/equip_plot.jpg"),
-              ("www/funnel_plot.jpg",    "www/funnel_plot.jpg"),
               ("Dockerfile",  "Dockerfile"),
           ]
 
