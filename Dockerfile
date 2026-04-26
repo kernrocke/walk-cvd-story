@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install required R packages
-RUN R -e "install.packages(c('shinydashboard','plotly','dplyr','DT','htmltools'), \
+RUN R -e "install.packages(c('shinydashboard','plotly','bslib','dplyr','shiny','scales'), \
     repos='https://cran.rstudio.com/', dependencies=TRUE)"
 
 # Copy app files to the Shiny server app directory
