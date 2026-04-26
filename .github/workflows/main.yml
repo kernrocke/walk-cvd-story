@@ -31,7 +31,7 @@ jobs:
           from huggingface_hub import HfApi
 
           api = HfApi(token=os.environ["HF_TOKEN"])
-          repo_id = "kernrocke/walkabiliy-cvd-risk"
+          repo_id = "kernrocke/walkability-cvd-risk"
 
           # Upload all relevant files
           files_to_upload = [
