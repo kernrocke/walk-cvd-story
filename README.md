@@ -1,2 +1,9 @@
-# walk-cvd-story
-Data story on the publication Neighbourhood Walkability and Its Influence on Physical Activity and Cardiometabolic Disease: A Cross-Sectional Study in a Caribbean Small Island Developing State
+---
+title: Walkability and CVD Risk Data Story
+emoji: 🏙️
+colorFrom: blue
+colorTo: gray
+sdk: docker
+app_file: app.R
+pinned: false
+---
