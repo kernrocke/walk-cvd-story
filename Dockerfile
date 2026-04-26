@@ -14,7 +14,6 @@ RUN R -e "install.packages(c('shinydashboard','plotly','bslib','dplyr','shiny','
 
 # Copy app files to the Shiny server app directory
 COPY app.R /srv/shiny-server/app/app.R
-COPY www/ /srv/shiny-server/app/www/
 
 # Expose port 7860 (required by Hugging Face Spaces)
 EXPOSE 7860
