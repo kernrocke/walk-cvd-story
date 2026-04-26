@@ -1,0 +1,62 @@
+name: Sync to Hugging Face Spaces
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  sync-to-huggingface:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Install huggingface_hub
+        run: pip install huggingface_hub
+
+      - name: Upload files to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HUGGINGFACE }}
+        run: |
+          python3 << 'PYEOF'
+          import os
+          from huggingface_hub import HfApi
+
+          api = HfApi(token=os.environ["HF_TOKEN"])
+          repo_id = "kernrocke/walkabiliy-cvd-risk"
+
+          # Upload all relevant files
+          files_to_upload = [
+              ("app.R",                  "app.R"),
+              ("packages.R",             "packages.R"),
+              ("README.md",              "README.md"),
+              ("www/prisma_scr.jpg",     "www/prisma_scr.jpg"),
+              ("www/evidence_matrix.jpg","www/evidence_matrix.jpg"),
+              ("www/equip_plot.jpg",     "www/equip_plot.jpg"),
+              ("www/funnel_plot.jpg",    "www/funnel_plot.jpg"),
+              ("Dockerfile",  "Dockerfile"),
+          ]
+
+          for local_path, repo_path in files_to_upload:
+              if os.path.exists(local_path):
+                  print(f"Uploading {local_path}...")
+                  api.upload_file(
+                      path_or_fileobj=local_path,
+                      path_in_repo=repo_path,
+                      repo_id=repo_id,
+                      repo_type="space",
+                  )
+                  print(f"  Done: {local_path}")
+              else:
+                  print(f"  Skipped (not found): {local_path}")
+
+          print("All files uploaded successfully!")
+          PYEOF
